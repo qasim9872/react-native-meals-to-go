@@ -1,18 +1,30 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  Platform,
-  StatusBar,
-} from "react-native";
+import { StatusBar } from "react-native";
+import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
-import { spacing } from "../../../constants/sizes";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
-const isAndroid = Platform.OS === "android";
+const SafeAreaView = styled.SafeAreaView`
+  flex: 1;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
+`;
+
+const AppContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+`;
+
+const AppView = styled.View`
+  flex: 1;
+  padding: 16px;
+  background-color: blue;
+`;
+
+const SearchBarContainer = styled.View`
+  padding: 16px;
+`;
 
 export const RestaurantScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -21,41 +33,22 @@ export const RestaurantScreen = () => {
 
   return (
     <>
-      <SafeAreaView style={styles.safeView}>
-        <View style={styles.appContainer}>
-          <View style={styles.searchBar}>
+      <SafeAreaView>
+        <AppContainer>
+          <SearchBarContainer>
             <Searchbar
               placeholder="Search"
               onChangeText={onChangeSearch}
               value={searchQuery}
             />
-          </View>
+          </SearchBarContainer>
 
-          <View style={styles.appView}>
+          <AppView>
             <RestaurantInfoCard />
-          </View>
-        </View>
+          </AppView>
+        </AppContainer>
       </SafeAreaView>
       <ExpoStatusBar style="auto" />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  safeView: {
-    flex: 1,
-    marginTop: isAndroid ? StatusBar.currentHeight : 0,
-  },
-  appContainer: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  searchBar: {
-    padding: spacing.md,
-  },
-  appView: {
-    flex: 1,
-    padding: spacing.md,
-    backgroundColor: "blue",
-  },
-});
