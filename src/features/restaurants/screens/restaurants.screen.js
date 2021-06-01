@@ -18,12 +18,12 @@ const AppContainer = styled.View`
 
 const AppView = styled.View`
   flex: 1;
-  padding: 16px;
+  padding: ${(props) => props.theme.space[3]};
   background-color: blue;
 `;
 
 const SearchBarContainer = styled.View`
-  padding: 16px;
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 export const RestaurantScreen = () => {
