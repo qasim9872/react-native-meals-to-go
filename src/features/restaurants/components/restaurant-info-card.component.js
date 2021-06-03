@@ -35,7 +35,11 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       <Info>
         <Text variant="label">{name}</Text>
         <IconRow>
-          <Rating>{ratingArray.map(StarIcon)}</Rating>
+          <Rating>
+            {ratingArray.map((_, index) => (
+              <StarIcon key={index} />
+            ))}
+          </Rating>
           <IconRowEnd>
             {isClosedTemporarily && (
               <Text variant="error">CLOSED TEMPORARILY</Text>
