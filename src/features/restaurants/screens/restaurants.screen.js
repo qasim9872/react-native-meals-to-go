@@ -1,16 +1,12 @@
 import React from "react";
-import { StatusBar, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
+import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
-
-const SafeAreaView = styled.SafeAreaView`
-  flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
-`;
 
 const AppContainer = styled.View`
   flex: 1;
@@ -34,7 +30,7 @@ export const RestaurantScreen = () => {
 
   return (
     <>
-      <SafeAreaView>
+      <SafeArea>
         <AppContainer>
           <SearchBarContainer>
             <Searchbar
@@ -46,7 +42,7 @@ export const RestaurantScreen = () => {
 
           <RestaurantList
             data={Array.from(new Array(10)).map((_, index) => ({
-              name: index + 1,
+              name: (index + 1).toString(),
             }))}
             renderItem={() => (
               <Spacer position="bottom" size="large">
@@ -56,7 +52,7 @@ export const RestaurantScreen = () => {
             keyExtractor={(item) => item.name}
           />
         </AppContainer>
-      </SafeAreaView>
+      </SafeArea>
       <ExpoStatusBar style="auto" />
     </>
   );
