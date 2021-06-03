@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components/native";
 import { Card } from "react-native-paper";
-import { Image } from "react-native";
 import { SvgXml } from "react-native-svg";
+
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
@@ -48,10 +49,6 @@ const IconRowEnd = styled.View`
   flex-direction: row;
 `;
 
-const Spacer = styled.View`
-  padding-left: ${(props) => props.theme.space[2]};
-`;
-
 const LogoIcon = styled.Image`
   width: 15px;
   height: 15px;
@@ -93,11 +90,12 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
             {isClosedTemporarily && (
               <TextLabel variant="label">CLOSED TEMPORARILY</TextLabel>
             )}
-            <Spacer />
-            {isOpenNow && <OpenNowIcon />}
-            <Spacer />
-
-            <LogoIcon source={{ uri: icon }} />
+            <Spacer position="left" size="large">
+              {isOpenNow && <OpenNowIcon />}
+            </Spacer>
+            <Spacer position="left" size="large">
+              <LogoIcon source={{ uri: icon }} />
+            </Spacer>
           </IconRowEnd>
         </IconRow>
         <Address>{address}</Address>
