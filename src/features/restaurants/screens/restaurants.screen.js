@@ -28,7 +28,7 @@ export const RestaurantScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
 
   const onChangeSearch = (query) => setSearchQuery(query);
-  const restaurantContext = useRestaurantContext();
+  const { restaurants, isLoading, error } = useRestaurantContext();
 
   return (
     <>
@@ -43,12 +43,14 @@ export const RestaurantScreen = () => {
           </SearchBarContainer>
 
           <RestaurantList
-            data={restaurantContext.restaurants}
-            renderItem={() => (
-              <Spacer position="bottom" size="large">
-                <RestaurantInfoCard />
-              </Spacer>
-            )}
+            data={restaurants}
+            renderItem={({ item }) => {
+              return (
+                <Spacer position="bottom" size="large">
+                  <RestaurantInfoCard restaurant={item} />
+                </Spacer>
+              );
+            }}
             keyExtractor={(item) => item.name}
           />
         </AppContainer>
