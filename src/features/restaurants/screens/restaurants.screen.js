@@ -7,6 +7,7 @@ import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+import { useRestaurantContext } from "../../../services/restaurants/restaurant.context";
 
 const AppContainer = styled.View`
   flex: 1;
@@ -27,6 +28,7 @@ export const RestaurantScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
 
   const onChangeSearch = (query) => setSearchQuery(query);
+  const restaurantContext = useRestaurantContext();
 
   return (
     <>
@@ -41,9 +43,7 @@ export const RestaurantScreen = () => {
           </SearchBarContainer>
 
           <RestaurantList
-            data={Array.from(new Array(10)).map((_, index) => ({
-              name: (index + 1).toString(),
-            }))}
+            data={restaurantContext.restaurants}
             renderItem={() => (
               <Spacer position="bottom" size="large">
                 <RestaurantInfoCard />
