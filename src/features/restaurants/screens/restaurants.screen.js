@@ -5,6 +5,7 @@ import { Searchbar } from "react-native-paper";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
 import { SafeArea } from "../../../components/utility/safe-area.component";
+import { Loading } from "../../../components/utility/loading.component.js";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { useRestaurantContext } from "../../../services/restaurants/restaurant.context";
@@ -24,6 +25,12 @@ const RestaurantList = styled(FlatList).attrs({
   },
 })``;
 
+const LoadingContainer = styled.View`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
+
 export const RestaurantScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
 
@@ -41,6 +48,12 @@ export const RestaurantScreen = () => {
               value={searchQuery}
             />
           </SearchBarContainer>
+
+          {isLoading && (
+            <LoadingContainer>
+              <Loading />
+            </LoadingContainer>
+          )}
 
           <RestaurantList
             data={restaurants}
