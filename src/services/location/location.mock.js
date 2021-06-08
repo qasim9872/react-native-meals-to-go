@@ -1,5 +1,5 @@
 export const locations = {
-  antwerp: {
+  london: {
     results: [
       {
         geometry: {
