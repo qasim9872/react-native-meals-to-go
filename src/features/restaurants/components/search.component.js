@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
 import { useLocationContext } from "../../../services/location/location.context";
@@ -10,11 +10,6 @@ const SearchBarContainer = styled.View`
 export const SearchBar = () => {
   const { keyword, search } = useLocationContext();
   const [searchKeyword, setSearchKeyword] = useState(keyword);
-
-  useEffect(() => {
-    search(searchKeyword);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const onChangeSearch = (searchQuery) => setSearchKeyword(searchQuery);
   const onSubmitSearch = () => search(searchKeyword);
