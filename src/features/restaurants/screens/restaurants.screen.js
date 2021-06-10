@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, FlatList } from "react-native";
+import { TouchableOpacity, FlatList } from "react-native";
 import styled from "styled-components/native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
@@ -46,13 +46,13 @@ export const RestaurantScreen = ({ navigation }) => {
             data={restaurants}
             renderItem={({ item }) => {
               return (
-                <Pressable
+                <TouchableOpacity
                   onPress={() => navigation.navigate("RestaurantDetails")}
                 >
                   <Spacer position="bottom" size="large">
                     <RestaurantInfoCard restaurant={item} />
                   </Spacer>
-                </Pressable>
+                </TouchableOpacity>
               );
             }}
             keyExtractor={(item) => item.name}
