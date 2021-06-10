@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { Pressable, FlatList } from "react-native";
 import styled from "styled-components/native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
@@ -27,7 +27,7 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const RestaurantScreen = () => {
+export const RestaurantScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useRestaurantContext();
 
   return (
@@ -46,9 +46,13 @@ export const RestaurantScreen = () => {
             data={restaurants}
             renderItem={({ item }) => {
               return (
-                <Spacer position="bottom" size="large">
-                  <RestaurantInfoCard restaurant={item} />
-                </Spacer>
+                <Pressable
+                  onPress={() => navigation.navigate("RestaurantDetails")}
+                >
+                  <Spacer position="bottom" size="large">
+                    <RestaurantInfoCard restaurant={item} />
+                  </Spacer>
+                </Pressable>
               );
             }}
             keyExtractor={(item) => item.name}
