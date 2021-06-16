@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity, FlatList } from "react-native";
 import styled from "styled-components/native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
@@ -9,6 +9,8 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { SearchBar } from "../components/search.component";
 import { useRestaurantContext } from "../../../services/restaurants/restaurant.context";
+import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
+import { useFavouritesContext } from "../../../services/favourites/favourites.context";
 
 const AppContainer = styled.View`
   flex: 1;
@@ -29,12 +31,24 @@ const LoadingContainer = styled.View`
 
 export const RestaurantScreen = ({ navigation: { navigate } }) => {
   const { restaurants, isLoading, error } = useRestaurantContext();
+  const [isFavouritesToggled, setIsFavouritesToggled] = useState();
+  const { favourites } = useFavouritesContext();
+
+  const onFavouritesToggled = () =>
+    setIsFavouritesToggled(!isFavouritesToggled);
 
   return (
     <>
       <SafeArea>
         <AppContainer>
-          <SearchBar />
+          <SearchBar
+            isFavouritesToggled={isFavouritesToggled}
+            onFavouritesToggled={onFavouritesToggled}
+          />
+
+          {isFavouritesToggled && (
+            <FavouritesBar favourites={favourites} onNavigate={navigate} />
+          )}
 
           {isLoading && (
             <LoadingContainer>
