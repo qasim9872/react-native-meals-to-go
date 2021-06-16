@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 
 import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -13,6 +14,7 @@ import {
   StarIcon,
   OpenNowIcon,
 } from "./restaurant-info-card.styles";
+import { Favourite } from "../../../components/favourites/favourite.component";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -32,7 +34,10 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard elevation={5}>
-      <RestaurantCardCover source={{ uri: photos[0] }} />
+      <View>
+        <Favourite restaurant={restaurant} />
+        <RestaurantCardCover source={{ uri: photos[0] }} />
+      </View>
       <Info>
         <Text variant="label">{name}</Text>
         <IconRow>
