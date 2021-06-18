@@ -24,8 +24,8 @@ const CompactCardView = styled.View`
 
 const isAndroid = Platform.OS === "android";
 
-export const CompactRestaurantInfoCard = ({ restaurant }) => {
-  const Image = isAndroid ? CompactWebview : CompactImage;
+export const CompactRestaurantInfoCard = ({ restaurant, isMap = false }) => {
+  const Image = isAndroid && isMap ? CompactWebview : CompactImage;
 
   return (
     <CompactCardView>
