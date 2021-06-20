@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
-import { Button } from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
+
 import backgroundImage from "../../../../assets/home_bg.jpg";
 import { colors } from "../../../infrastructure/theme/colors";
 
@@ -24,8 +25,19 @@ export const AccountContainer = styled.View`
   margin-top: ${(props) => props.theme.space[2]};
 `;
 
+export const AccountFormContainer = styled.View`
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: ${(props) => props.theme.space[4]};
+  margin-top: ${(props) => props.theme.space[2]};
+`;
+
 export const AuthButton = styled(Button).attrs({
   color: colors.brand.primary,
 })`
   padding: ${(props) => props.theme.space[2]};
+`;
+
+export const AuthTextInput = styled(TextInput)`
+  width: 100%;
 `;
