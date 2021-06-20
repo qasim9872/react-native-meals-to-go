@@ -6,6 +6,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import { RestaurantsNavigator } from "./restaurants.navigator";
 import { MapsNavigator } from "./map.navigator";
+import { Button } from "react-native";
+import { useAuthenticationContext } from "../../services/authentication/authentication.context";
 
 const Tab = createBottomTabNavigator();
 const TAB_ICON = {
@@ -27,11 +29,16 @@ const screenOptions = ({ route }) => {
   };
 };
 
-const Settings = () => (
-  <SafeArea>
-    <Text>Settings</Text>
-  </SafeArea>
-);
+const Settings = () => {
+  const { onLogout } = useAuthenticationContext();
+
+  return (
+    <SafeArea>
+      <Text>Settings</Text>
+      <Button title="Logout" onPress={() => onLogout()} />
+    </SafeArea>
+  );
+};
 
 export const AppNavigator = () => (
   <Tab.Navigator
