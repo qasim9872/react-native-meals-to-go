@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ActivityIndicator, Colors } from "react-native-paper";
 import {
   Title,
   AuthButton,
@@ -15,16 +16,9 @@ import { Text } from "../../../components/typography/text.component";
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const { onLogin, error } = useAuthenticationContext();
+  const { onLogin, isLoading, error } = useAuthenticationContext();
 
-  const onLoginClicked = () => {
-    if (!email || !password) {
-      console.log("missing login information");
-      return;
-    }
-
-    onLogin(email, password);
-  };
+  const onLoginClicked = () => onLogin(email, password);
 
   return (
     <AccountBackground>
@@ -58,13 +52,17 @@ export const LoginScreen = ({ navigation }) => {
         )}
 
         <Spacer position="top" size="large">
-          <AuthButton
-            icon="lock-open-outline"
-            mode="contained"
-            onPress={onLoginClicked}
-          >
-            Login
-          </AuthButton>
+          {!isLoading ? (
+            <AuthButton
+              icon="lock-open-outline"
+              mode="contained"
+              onPress={onLoginClicked}
+            >
+              Login
+            </AuthButton>
+          ) : (
+            <ActivityIndicator animating={true} color={Colors.blue300} />
+          )}
         </Spacer>
       </AccountFormContainer>
       <Spacer size="large">
