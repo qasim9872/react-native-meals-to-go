@@ -9,9 +9,9 @@ const AccountStack = createStackNavigator();
 export const AccountNavigator = () => {
   return (
     <AccountStack.Navigator headerMode="none">
-      <AccountStack.Screen name="AccountScreen" component={AccountScreen} />
-      <AccountStack.Screen name="LoginScreen" component={LoginScreen} />
-      <AccountStack.Screen name="RegisterScreen" component={RegisterScreen} />
+      <AccountStack.Screen name="AccountHome" component={AccountScreen} />
+      <AccountStack.Screen name="Login" component={LoginScreen} />
+      <AccountStack.Screen name="Register" component={RegisterScreen} />
     </AccountStack.Navigator>
   );
 };
