@@ -6,7 +6,7 @@ export const AuthenticationContext = createContext();
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -16,7 +16,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setError(err);
+        setError(err.toString());
         setIsLoading(false);
       });
   };
