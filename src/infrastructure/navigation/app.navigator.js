@@ -8,6 +8,9 @@ import { RestaurantsNavigator } from "./restaurants.navigator";
 import { MapsNavigator } from "./map.navigator";
 import { Button } from "react-native";
 import { useAuthenticationContext } from "../../services/authentication/authentication.context";
+import { RestaurantContextProvider } from "../../services/restaurants/restaurant.context";
+import { LocationContextProvider } from "../../services/location/location.context";
+import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
 
 const Tab = createBottomTabNavigator();
 const TAB_ICON = {
@@ -41,15 +44,21 @@ const Settings = () => {
 };
 
 export const AppNavigator = () => (
-  <Tab.Navigator
-    screenOptions={screenOptions}
-    tabBarOptions={{
-      activeTintColor: "tomato",
-      inactiveTintColor: "gray",
-    }}
-  >
-    <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-    <Tab.Screen name="Map" component={MapsNavigator} />
-    <Tab.Screen name="Settings" component={Settings} />
-  </Tab.Navigator>
+  <FavouritesContextProvider>
+    <LocationContextProvider>
+      <RestaurantContextProvider>
+        <Tab.Navigator
+          screenOptions={screenOptions}
+          tabBarOptions={{
+            activeTintColor: "tomato",
+            inactiveTintColor: "gray",
+          }}
+        >
+          <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+          <Tab.Screen name="Map" component={MapsNavigator} />
+          <Tab.Screen name="Settings" component={Settings} />
+        </Tab.Navigator>
+      </RestaurantContextProvider>
+    </LocationContextProvider>
+  </FavouritesContextProvider>
 );
