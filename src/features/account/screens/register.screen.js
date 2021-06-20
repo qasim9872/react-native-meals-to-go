@@ -12,19 +12,14 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { useAuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Text } from "../../../components/typography/text.component";
 
-export const LoginScreen = ({ navigation }) => {
+export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const { onLogin, error } = useAuthenticationContext();
+  const [repeatedPassword, setRepeatedPassword] = useState(null);
 
-  const onLoginClicked = () => {
-    if (!email || !password) {
-      console.log("missing login information");
-      return;
-    }
+  const { onRegister, error } = useAuthenticationContext();
 
-    onLogin(email, password);
-  };
+  const onRegisterClicked = () => onRegister(email, password, repeatedPassword);
 
   return (
     <AccountBackground>
@@ -51,6 +46,19 @@ export const LoginScreen = ({ navigation }) => {
           />
         </Spacer>
 
+        <Spacer position="top" size="large">
+          <AuthTextInput
+            label="Repeated Password"
+            secureTextEntry
+            textContentType="password"
+            autoCapitalize="none"
+            value={repeatedPassword}
+            onChangeText={(enteredRepeatedPassword) =>
+              setRepeatedPassword(enteredRepeatedPassword)
+            }
+          />
+        </Spacer>
+
         {error && (
           <ErrorContainer size="large">
             <Text variant="error">{error}</Text>
@@ -58,12 +66,8 @@ export const LoginScreen = ({ navigation }) => {
         )}
 
         <Spacer position="top" size="large">
-          <AuthButton
-            icon="lock-open-outline"
-            mode="contained"
-            onPress={onLoginClicked}
-          >
-            Login
+          <AuthButton icon="email" mode="contained" onPress={onRegisterClicked}>
+            Register
           </AuthButton>
         </Spacer>
       </AccountFormContainer>

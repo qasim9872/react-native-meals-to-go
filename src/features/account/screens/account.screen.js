@@ -22,7 +22,7 @@ export const AccountScreen = ({ navigation: { navigate } }) => (
       </AuthButton>
       <Spacer position="top" size="large">
         <AuthButton
-          icon="lock-open-outline"
+          icon="email"
           mode="contained"
           onPress={() => navigate("Register")}
         >
