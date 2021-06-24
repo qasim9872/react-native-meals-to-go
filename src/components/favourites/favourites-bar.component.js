@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { ScrollView, TouchableOpacity } from "react-native";
 
 import { Spacer } from "../spacer/spacer.component";
-import { CompactRestaurantInfoCard } from "../components/compact-restaurant-info-card.component";
+import { CompactRestaurantInfoCard } from "../restaurant/compact-restaurant-info-card.component";
 import { Text } from "../typography/text.component";
 
 const FavouritesBarView = styled.View`
