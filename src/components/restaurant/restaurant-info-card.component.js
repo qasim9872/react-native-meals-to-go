@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
 
-import { Text } from "../../../components/typography/text.component";
-import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../typography/text.component";
+import { Spacer } from "../spacer/spacer.component";
 import {
   RestaurantCard,
   RestaurantCardCover,
@@ -14,7 +14,7 @@ import {
   StarIcon,
   OpenNowIcon,
 } from "./restaurant-info-card.styles";
-import { Favourite } from "../../../components/favourites/favourite.component";
+import { Favourite } from "../favourites/favourite.component";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {

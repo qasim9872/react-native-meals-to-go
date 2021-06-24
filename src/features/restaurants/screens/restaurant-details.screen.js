@@ -1,6 +1,6 @@
 import React from "react";
 
-import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+import { RestaurantInfoCard } from "../../../components/restaurant/restaurant-info-card.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantMenu } from "../components/restaurant-menu.component";
 
