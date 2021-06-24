@@ -3,7 +3,8 @@ import styled from "styled-components/native";
 import { TouchableOpacity, FlatList } from "react-native";
 
 import { Spacer } from "../spacer/spacer.component";
-import { RestaurantInfoCard } from "../restaurant/restaurant-info-card.component";
+import { RestaurantInfoCard } from "./restaurant-info-card.component";
+import { FadeInView } from "../animations/fade.animation";
 
 const RestaurantFlatList = styled(FlatList).attrs({
   contentContainerStyle: {
@@ -19,7 +20,9 @@ export const RestaurantList = ({ restaurants, onClick }) => {
         return (
           <TouchableOpacity onPress={() => onClick(item)}>
             <Spacer position="bottom" size="large">
-              <RestaurantInfoCard restaurant={item} />
+              <FadeInView>
+                <RestaurantInfoCard restaurant={item} />
+              </FadeInView>
             </Spacer>
           </TouchableOpacity>
         );

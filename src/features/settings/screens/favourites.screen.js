@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 
-import { RestaurantList } from "../../../components/restaurant/RestaurantList.component";
+import { RestaurantList } from "../../../components/restaurant/restaurant-list.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Text } from "../../../components/typography/text.component";
 import { useFavouritesContext } from "../../../services/favourites/favourites.context";
